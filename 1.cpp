@@ -1,18 +1,37 @@
 //https://leetcode.com/problems/two-sum/?envType=problem-list-v2&envId=array
 
+// class Solution {
+//     public:
+//         vector<int> twoSum(vector<int>& nums, int target) {
+//             int n=nums.size();
+//             int sum;
+//             for(int i=0; i<n; i++){
+//                 for(int j=1; j<n; j++){
+//                     sum=nums[i]+nums[j];
+//                     if(sum==target && i!=j){
+//                         return {i,j};
+//                     }
+//                 }
+//             }
+//             return {};
+//         }
+// };
+
 class Solution {
-    public:
-        vector<int> twoSum(vector<int>& nums, int target) {
-            int n=nums.size();
-            int sum;
-            for(int i=0; i<n; i++){
-                for(int j=1; j<n; j++){
-                    sum=nums[i]+nums[j];
-                    if(sum==target && i!=j){
-                        return {i,j};
-                    }
-                }
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> mp;
+
+        for(int i = 0; i < nums.size(); i++) {
+            int n = target - nums[i];
+
+            if(mp.find(n) != mp.end()) {
+                return {mp[n], i};
             }
-            return {};
+
+            mp[nums[i]] = i;
         }
+
+        return {};
+    }
 };
